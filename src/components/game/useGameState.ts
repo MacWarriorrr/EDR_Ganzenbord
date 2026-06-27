@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { GAME_EVENTS, PLAYER_COLORS, type Player, type GameEvent } from './types'
+import { useState, useRef } from 'react'
+import { POSITIVE_TILES, NEGATIVE_TILES, PLAYER_COLORS, type Player, type GameEvent, type HistoryEvent } from './types'
+import { POSITIVE_FACTORS, NEGATIVE_FACTORS } from '@/data/factors'
 
 export function useGameState() {
   const [gameStarted, setGameStarted] = useState(false)
@@ -8,6 +9,11 @@ export function useGameState() {
   const [lastRoll, setLastRoll] = useState<number | null>(null)
   const [activeEvent, setActiveEvent] = useState<GameEvent | null>(null)
   const [winner, setWinner] = useState<Player | null>(null)
+  const [usedFactors, setUsedFactors] = useState<string[]>([])
+  const [isRolling, setIsRolling] = useState(false)
+  const [isMoving, setIsMoving] = useState(false)
+  const [eventHistory, setEventHistory] = useState<HistoryEvent[]>([])
+  const isApplyingEventRef = useRef(false)
 
   const startGame = (numPlayers: number) => {
     const newPlayers: Player[] = Array.from({ length: numPlayers }).map((_, i) => ({
@@ -23,6 +29,10 @@ export function useGameState() {
     setLastRoll(null)
     setActiveEvent(null)
     setWinner(null)
+    setUsedFactors([])
+    setIsRolling(false)
+    setIsMoving(false)
+    setEventHistory([])
   }
 
   const nextTurn = () => {
@@ -50,52 +60,112 @@ export function useGameState() {
   }
 
   const handleRoll = () => {
-    if (activeEvent || winner) return
+    if (activeEvent || winner || isRolling || isMoving) return
 
-    const roll = Math.floor(Math.random() * 6) + 1
-    setLastRoll(roll)
+    setIsRolling(true)
+    setLastRoll(null)
 
-    const player = players[currentPlayerIndex]
-    let newPosition = player.position + roll
+    setTimeout(() => {
+      const roll = Math.floor(Math.random() * 6) + 1
+      setLastRoll(roll)
+      setIsRolling(false)
+      setIsMoving(true)
 
-    if (newPosition >= 30) {
-      newPosition = 30
-      // Update position before showing win
-      setPlayers(prev => prev.map((p, i) => i === currentPlayerIndex ? { ...p, position: newPosition } : p))
-      setWinner(player)
-      return
-    }
+      const player = players[currentPlayerIndex]
+      const targetPosition = Math.min(64, player.position + roll)
+      let currentPos = player.position
 
-    // Move player
-    setPlayers(prev => prev.map((p, i) => i === currentPlayerIndex ? { ...p, position: newPosition } : p))
+      const step = () => {
+        currentPos += 1
+        setPlayers(prev => prev.map((p, i) => i === currentPlayerIndex ? { ...p, position: currentPos } : p))
 
-    // Check for events
-    if (GAME_EVENTS[newPosition]) {
-      setActiveEvent(GAME_EVENTS[newPosition])
-    } else {
-      // Small delay before next turn just for UX
-      setTimeout(() => {
-        nextTurn()
-      }, 1000)
-    }
+        if (currentPos < targetPosition) {
+          setTimeout(step, 400)
+        } else {
+          // Reached target
+          setIsMoving(false)
+
+          if (currentPos >= 64) {
+            setPlayers(prev => {
+              const winnerPlayer = prev[currentPlayerIndex]
+              setWinner(winnerPlayer)
+              return prev
+            })
+            return
+          }
+
+          // Check for events
+          const isPositive = POSITIVE_TILES.includes(currentPos)
+          const isNegative = NEGATIVE_TILES.includes(currentPos)
+
+          if (isPositive || isNegative) {
+            const type = isPositive ? 'positive' : 'negative'
+            setUsedFactors(prevUsed => {
+              let availableFactors = (type === 'positive' ? POSITIVE_FACTORS : NEGATIVE_FACTORS)
+                .filter(f => !prevUsed.includes(f.id))
+              
+              if (availableFactors.length === 0) {
+                availableFactors = type === 'positive' ? POSITIVE_FACTORS : NEGATIVE_FACTORS
+              }
+
+              const randomFactor = availableFactors[Math.floor(Math.random() * availableFactors.length)]
+              
+              setTimeout(() => {
+                 setActiveEvent({ tile: currentPos, factor: randomFactor })
+              }, 0)
+              
+              return [...prevUsed, randomFactor.id]
+            })
+          } else {
+            setTimeout(() => {
+              nextTurn()
+            }, 1000)
+          }
+        }
+      }
+
+      if (currentPos < targetPosition) {
+        setTimeout(step, 400)
+      } else {
+        setIsMoving(false)
+        setTimeout(nextTurn, 1000)
+      }
+    }, 1000)
   }
 
   const applyEvent = () => {
-    if (!activeEvent) return
+    if (!activeEvent || isApplyingEventRef.current) return
+    isApplyingEventRef.current = true
+
+    const currentPlayer = players[currentPlayerIndex]
+    const actionResult = activeEvent.factor.action(currentPlayer)
+
+    setEventHistory(prev => [
+      { id: Math.random().toString(36).substr(2, 9), player: currentPlayer, event: activeEvent },
+      ...prev
+    ])
 
     setPlayers(prev => prev.map((p, i) => {
       if (i === currentPlayerIndex) {
-        return { ...p, ...activeEvent.action(p) }
+        return { ...p, ...actionResult }
       }
       return p
     }))
 
     setActiveEvent(null)
+    setIsMoving(true) // Prevent rolling before turn changes
     
     // Check win condition again after event (e.g. tile 24 + 2 -> 26, but if event brings to 30)
     // For this game, max event brings from 24 to 26, so no immediate win from event, but good practice.
     setTimeout(() => {
-      nextTurn()
+      if (actionResult.extraTurn) {
+        setPlayers(prev => prev.map((p, i) => i === currentPlayerIndex ? { ...p, extraTurn: false } : p))
+        setLastRoll(null)
+      } else {
+        nextTurn()
+      }
+      setIsMoving(false)
+      isApplyingEventRef.current = false
     }, 500)
   }
 
@@ -106,6 +176,9 @@ export function useGameState() {
     lastRoll,
     activeEvent,
     winner,
+    isRolling,
+    isMoving,
+    eventHistory,
     startGame,
     handleRoll,
     applyEvent

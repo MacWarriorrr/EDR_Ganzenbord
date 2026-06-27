@@ -4,9 +4,10 @@ import { createRouter } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root.tsx'
 import { Route as indexRoute } from './routes/index.tsx'
 import { Route as spelRoute } from './routes/spel.tsx'
+import { Route as factorenRoute } from './routes/factoren.tsx'
 
 // Build route tree
-const routeTree = rootRoute.addChildren([indexRoute, spelRoute])
+const routeTree = rootRoute.addChildren([indexRoute, spelRoute, factorenRoute])
 
 // Create and export the router
 export const router = createRouter({ routeTree })

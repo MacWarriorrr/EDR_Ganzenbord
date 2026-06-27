@@ -28,11 +28,11 @@ export function WinnerModal({ winner, onRestart }: WinnerModalProps) {
           <DialogTitle className="text-3xl text-emerald-700 mb-2">
             Gefeliciteerd!
           </DialogTitle>
-          <DialogDescription className="text-lg text-slate-700 py-2 font-medium">
+          <DialogDescription className="text-lg text-stone-700 py-2 font-medium">
             Je bent succesvol geïntegreerd!
           </DialogDescription>
-          <p className="text-sm text-slate-500 mt-2">
-            Speler {winner.colorName} heeft als eerste vakje 30 bereikt.
+          <p className="text-sm text-stone-500 mt-2">
+            Speler {winner.colorName} heeft als eerste vakje 64 bereikt.
           </p>
         </DialogHeader>
         <DialogFooter className="sm:justify-center mt-6">

@@ -1,65 +1,89 @@
-import { GAME_EVENTS, PLAYER_COLORS } from './types'
+import { POSITIVE_TILES, NEGATIVE_TILES, PLAYER_COLORS } from './types'
 import type { Player } from './types'
 import { cn } from '@/lib/utils'
+import { INITIAL_COORDINATES, type Coordinate } from './boardCoordinates'
+import BordAchtergrond from '@/assets/BordAchtergrond.png'
 
 interface GameBoardProps {
   players: Player[]
 }
 
 export function GameBoard({ players }: GameBoardProps) {
-  const tiles = Array.from({ length: 30 }, (_, i) => i + 1)
+  const tiles = Array.from({ length: 64 }, (_, i) => i + 1)
+  const coords = INITIAL_COORDINATES
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 max-w-4xl mx-auto mb-8">
-      <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-10 gap-3 sm:gap-4">
+    <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-xl border border-stone-100 w-full">
+      <div 
+        className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-inner border-2 border-stone-200 bg-stone-100 touch-none select-none"
+      >
+        <img 
+          src={BordAchtergrond} 
+          alt="Ganzenbord Achtergrond" 
+          className="w-full h-full object-contain object-center absolute inset-0 pointer-events-none"
+        />
+        
         {tiles.map((tile) => {
-          const isEvent = GAME_EVENTS[tile]
-          const isStart = tile === 1
-          const isFinish = tile === 30
-          
-          // Find players on this tile
+          const isPositive = POSITIVE_TILES.includes(tile)
+          const isNegative = NEGATIVE_TILES.includes(tile)
+          const isEvent = isPositive || isNegative
           const playersOnTile = players.filter(p => p.position === tile)
+          const pos = coords[tile] || { x: 50, y: 50 }
 
           return (
             <div 
               key={tile}
               className={cn(
-                "aspect-square rounded-xl flex flex-col items-center justify-between p-2 relative transition-all duration-300",
-                isStart ? "bg-blue-100 border-2 border-blue-300 shadow-inner" : 
-                isFinish ? "bg-emerald-100 border-2 border-emerald-300 shadow-inner" :
-                isEvent?.type === 'positive' ? "bg-emerald-50 border border-emerald-200" :
-                isEvent?.type === 'negative' ? "bg-rose-50 border border-rose-200" :
-                "bg-slate-50 border border-slate-200"
+                "absolute flex flex-col items-center justify-center p-1 transition-all",
+                "w-12 h-12 -ml-6 -mt-6 z-10 hover:z-20 hover:scale-110 duration-200"
               )}
+              style={{
+                left: `${pos.x}%`,
+                top: `${pos.y}%`,
+              }}
             >
-              <span className={cn(
-                "text-sm font-bold opacity-50",
-                isStart && "text-blue-600 opacity-100",
-                isFinish && "text-emerald-600 opacity-100",
-                isEvent?.type === 'positive' && "text-emerald-600 opacity-80",
-                isEvent?.type === 'negative' && "text-rose-600 opacity-80"
-              )}>
-                {isStart ? 'Start' : isFinish ? 'Finish' : tile}
-              </span>
-              
-              {/* Player tokens container */}
-              <div className="flex flex-wrap justify-center gap-1 mt-1 w-full h-full items-end pb-1">
-                {playersOnTile.map(p => {
-                  const colorObj = PLAYER_COLORS.find(c => c.hex === p.color)
-                  return (
-                    <div 
-                      key={p.id}
-                      className={cn(
-                        "w-3 h-3 sm:w-4 sm:h-4 rounded-full shadow-sm ring-1 ring-white/50",
-                        colorObj?.bgClass || "bg-slate-800"
-                      )}
-                      title={`Speler ${p.id} (${p.colorName})`}
-                    />
-                  )
-                })}
+              <div className="relative w-full h-full flex flex-wrap justify-center items-center gap-0.5">
+                {isEvent && playersOnTile.length === 0 && (
+                   <div className={cn(
+                     "w-4 h-4 rounded-full opacity-60 shadow-inner animate-pulse",
+                     isPositive ? "bg-emerald-400" : "bg-rose-400"
+                   )} />
+                )}
               </div>
             </div>
           )
+        })}
+
+        {/* Render Players */}
+        {players.map((p) => {
+          const playersOnSameTile = players.filter(pl => pl.position === p.position);
+          const indexOnTile = playersOnSameTile.findIndex(pl => pl.id === p.id);
+          
+          const pos = coords[p.position] || { x: 50, y: 50 };
+          const offsetRadius = playersOnSameTile.length > 1 ? 1.5 : 0;
+          const angle = (indexOnTile / playersOnSameTile.length) * Math.PI * 2;
+          
+          const finalX = pos.x + (Math.cos(angle) * offsetRadius);
+          const finalY = pos.y + (Math.sin(angle) * offsetRadius);
+
+          const colorObj = PLAYER_COLORS.find(c => c.hex === p.color);
+
+          return (
+            <div 
+              key={p.id}
+              className={cn(
+                "absolute w-6 h-6 rounded-full shadow-xl ring-2 ring-white z-50 transition-all duration-300 ease-linear -ml-3 -mt-3",
+                colorObj?.bgClass || "bg-stone-800"
+              )}
+              style={{
+                left: `${finalX}%`,
+                top: `${finalY}%`,
+              }}
+              title={`Speler ${p.id} (${p.colorName})`}
+            >
+              <div className="absolute inset-0 rounded-full bg-black/15 shadow-[inset_0_2px_4px_rgba(255,255,255,0.5)]" />
+            </div>
+          );
         })}
       </div>
     </div>

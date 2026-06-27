@@ -4,6 +4,7 @@ import { useGameState } from '@/components/game/useGameState'
 import { GameSetup } from '@/components/game/GameSetup'
 import { GameBoard } from '@/components/game/GameBoard'
 import { GameControls } from '@/components/game/GameControls'
+import { EventHistory } from '@/components/game/EventHistory'
 import { EventModal } from '@/components/game/EventModal'
 import { WinnerModal } from '@/components/game/WinnerModal'
 
@@ -21,31 +22,40 @@ function SpelComponent() {
     lastRoll,
     activeEvent,
     winner,
+    isRolling,
+    isMoving,
+    eventHistory,
     startGame,
     handleRoll,
     applyEvent
   } = useGameState()
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-slate-50 py-12 px-4">
-      <div className="container mx-auto max-w-5xl">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight mb-2">ISD Integratie Reis - Het Spel</h1>
-          <p className="text-slate-600">Gooi de dobbelsteen en ontdek hoe jouw integratiepad verloopt.</p>
+    <div className="min-h-[calc(100vh-4rem)] bg-stone-50 py-4 px-4 sm:px-8">
+      <div className="mx-auto max-w-[1800px] w-full">
+        <div className="mb-4 text-center">
+          <h1 className="text-3xl font-extrabold text-stone-800 tracking-tight mb-2">ISD Integratie Reis - Het Spel</h1>
+          <p className="text-stone-600">Gooi de dobbelsteen en ontdek hoe jouw integratiepad verloopt.</p>
         </div>
 
         {!gameStarted ? (
           <GameSetup onStart={startGame} />
         ) : (
-          <div className="animate-in fade-in duration-500">
-            <GameBoard players={players} />
-            <GameControls 
-              players={players}
-              currentPlayerIndex={currentPlayerIndex}
-              lastRoll={lastRoll}
-              onRoll={handleRoll}
-              disabled={!!activeEvent || !!winner}
-            />
+          <div className="animate-in fade-in duration-500 flex flex-col lg:flex-row gap-4 xl:gap-8 items-start justify-center">
+            <div className="flex-1 w-full">
+              <GameBoard players={players} />
+            </div>
+            <div className="w-full lg:w-80 shrink-0 sticky top-8">
+              <GameControls 
+                players={players}
+                currentPlayerIndex={currentPlayerIndex}
+                lastRoll={lastRoll}
+                isRolling={isRolling}
+                onRoll={handleRoll}
+                disabled={!!activeEvent || !!winner || isMoving || isRolling}
+              />
+              <EventHistory history={eventHistory} />
+            </div>
           </div>
         )}
 

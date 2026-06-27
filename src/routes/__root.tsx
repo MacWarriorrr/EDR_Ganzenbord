@@ -1,5 +1,5 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { NavigationIcon, HomeIcon, Dices } from 'lucide-react'
+import { NavigationIcon, HomeIcon, Dices, BookOpen } from 'lucide-react'
 import { Link } from '@tanstack/react-router'
 
 export const Route = createRootRoute({
@@ -31,6 +31,13 @@ function RootComponent() {
             >
               <Dices className="h-4 w-4" />
               Bordspel
+            </Link>
+            <Link
+              to="/factoren"
+              className="flex items-center gap-2 text-sm font-medium text-slate-600 transition-colors hover:text-blue-600 [&.active]:text-blue-700"
+            >
+              <BookOpen className="h-4 w-4" />
+              Factoren
             </Link>
           </nav>
         </div>
