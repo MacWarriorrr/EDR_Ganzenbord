@@ -83,9 +83,9 @@ export function useGameState() {
           setTimeout(step, 400)
         } else {
           // Reached target
-          setIsMoving(false)
 
           if (currentPos >= 64) {
+            setIsMoving(false)
             setPlayers(prev => {
               const winnerPlayer = prev[currentPlayerIndex]
               setWinner(winnerPlayer)
@@ -112,13 +112,15 @@ export function useGameState() {
               
               setTimeout(() => {
                  setActiveEvent({ tile: currentPos, factor: randomFactor })
-              }, 0)
+                 setIsMoving(false)
+              }, 1000)
               
               return [...prevUsed, randomFactor.id]
             })
           } else {
             setTimeout(() => {
               nextTurn()
+              setIsMoving(false)
             }, 1000)
           }
         }
@@ -127,8 +129,10 @@ export function useGameState() {
       if (currentPos < targetPosition) {
         setTimeout(step, 400)
       } else {
-        setIsMoving(false)
-        setTimeout(nextTurn, 1000)
+        setTimeout(() => {
+          nextTurn()
+          setIsMoving(false)
+        }, 1000)
       }
     }, 1000)
   }

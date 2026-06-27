@@ -14,12 +14,8 @@ export function EventHistory({ history }: EventHistoryProps) {
     setExpandedId(prev => prev === id ? null : id)
   }
 
-  if (history.length === 0) {
-    return null // Verberg als er nog geen geschiedenis is
-  }
-
   return (
-    <Card className="max-w-md mx-auto mt-8 shadow-lg border-stone-200 w-full overflow-hidden flex flex-col max-h-[500px]">
+    <Card id="kaartenbak" className="max-w-md mx-auto mt-8 shadow-lg border-stone-200 w-full overflow-hidden flex flex-col max-h-[500px]">
       <CardHeader className="bg-stone-50 border-b border-stone-200 py-4 z-10 shrink-0">
         <div className="flex items-center gap-2 text-stone-700">
           <History className="w-5 h-5" />
@@ -28,12 +24,17 @@ export function EventHistory({ history }: EventHistoryProps) {
       </CardHeader>
       
       <CardContent className="p-0 overflow-y-auto flex-1 bg-stone-50/50">
-        <div className="flex flex-col">
-          {history.map((item) => {
-            const isPositive = item.event.factor.type === 'positive'
-            const isExpanded = expandedId === item.id
-
-            return (
+        {history.length === 0 ? (
+          <div className="p-8 text-center text-stone-500 italic text-sm">
+            Nog geen kaarten getrokken.
+          </div>
+        ) : (
+          <div className="flex flex-col">
+            {history.map((item) => {
+              const isPositive = item.event.factor.type === 'positive'
+              const isExpanded = expandedId === item.id
+  
+              return (
               <div 
                 key={item.id} 
                 className="border-b border-stone-200 last:border-0 bg-white cursor-pointer hover:bg-stone-50 transition-colors"
@@ -83,7 +84,8 @@ export function EventHistory({ history }: EventHistoryProps) {
               </div>
             )
           })}
-        </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   )

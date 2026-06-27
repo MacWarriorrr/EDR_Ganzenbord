@@ -42,6 +42,9 @@
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-dice-roll: dice-roll 0.4s linear infinite;
+  
+  --animate-card-enter: card-enter 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  --animate-card-exit: card-exit 0.5s ease-in forwards;
 
   @keyframes dice-roll {
     0% { transform: rotate(0deg) scale(1); }
@@ -56,6 +59,28 @@
   @keyframes accordion-up {
     from { height: var(--radix-accordion-content-height); }
     to { height: 0; }
+  }
+
+  @keyframes card-enter {
+    from { 
+      transform: translate(-50%, 100vh) rotate(-15deg);
+      opacity: 0;
+    }
+    to { 
+      transform: translate(-50%, -50%) rotate(0deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes card-exit {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: translate(calc(-50% + var(--target-x, 50vw)), calc(-50% + var(--target-y, 50vh))) rotate(15deg) scale(0.15);
+      opacity: 0;
+    }
   }
 }
 
