@@ -4,7 +4,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogFooter,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import type { Player } from "./types"
@@ -53,13 +52,13 @@ export function WinnerModal({ winner, onRestart }: WinnerModalProps) {
           </div>
         </DialogHeader>
         <div className="mt-6 flex flex-col gap-3 w-full sm:w-4/5 mx-auto">
-          <Button 
+          <Button
             onClick={onRestart}
             className="w-full px-6 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg"
           >
             Speel Opnieuw
           </Button>
-          <Button 
+          <Button
             onClick={() => navigate({ to: '/evaluatie' })}
             variant="outline"
             className="w-full px-6 border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold text-lg"
