@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { POSITIVE_TILES, NEGATIVE_TILES, PLAYER_COLORS, type Player, type GameEvent, type HistoryEvent, type RollResult } from './types'
 import { POSITIVE_FACTORS, NEGATIVE_FACTORS } from '@/data/factors'
+import { playPositiveSound, playNegativeSound } from '@/lib/audio'
 import confetti from 'canvas-confetti'
 
 export function useGameState() {
@@ -140,10 +141,12 @@ export function useGameState() {
               
               setTimeout(() => {
                  if (type === 'positive') {
+                   playPositiveSound()
                    setActiveEvent({ tile: currentPos, factor: randomFactor })
                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } })
                    setIsMoving(false)
                  } else {
+                   playNegativeSound()
                    setIsShaking(true)
                    setTimeout(() => {
                      setIsShaking(false)

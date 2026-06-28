@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Dices, Handshake } from 'lucide-react'
+import { playRollSound } from '@/lib/audio'
 import { PlayerIcon } from './PlayerIcon'
 
 interface GameControlsProps {
@@ -14,12 +15,8 @@ interface GameControlsProps {
   disabled: boolean
 }
 
-const DiceFace = ({ value }: { value: number }) => {
+const DiceFace = ({ value, isRolling }: { value: number, isRolling: boolean }) => {
   const dots = Array.from({ length: 9 }).map((_, i) => i);
-  // grid indices:
-  // 0 1 2
-  // 3 4 5
-  // 6 7 8
   const activeDots: Record<number, number[]> = {
     1: [4],
     2: [2, 6],
@@ -28,13 +25,28 @@ const DiceFace = ({ value }: { value: number }) => {
     5: [0, 2, 4, 6, 8],
     6: [0, 2, 3, 5, 6, 8]
   };
-  const active = activeDots[value] || [];
-  
+
+  const renderFace = (faceValue: number, className: string) => {
+    const active = activeDots[faceValue] || [];
+    return (
+      <div className={`cube-face ${className}`}>
+        {dots.map(dot => (
+          <div key={dot} className={`dot ${active.includes(dot) ? 'active' : ''}`} />
+        ))}
+      </div>
+    )
+  }
+
   return (
-    <div className="w-16 h-16 bg-white border-2 border-stone-200 rounded-xl shadow-sm p-2 grid grid-cols-3 grid-rows-3 gap-1">
-      {dots.map(dot => (
-        <div key={dot} className={`rounded-full ${active.includes(dot) ? 'bg-stone-800' : 'bg-transparent'}`} />
-      ))}
+    <div className="dice-scene mx-auto mb-4">
+      <div className={`dice-cube ${isRolling ? 'rolling' : `show-${value}`}`}>
+        {renderFace(1, 'cube-face-front')}
+        {renderFace(2, 'cube-face-right')}
+        {renderFace(3, 'cube-face-back')}
+        {renderFace(4, 'cube-face-left')}
+        {renderFace(5, 'cube-face-top')}
+        {renderFace(6, 'cube-face-bottom')}
+      </div>
     </div>
   )
 }
@@ -54,7 +66,8 @@ export function GameControls({ players, currentPlayerIndex, lastRoll, isRolling,
     if (isRolling) {
       const interval = setInterval(() => {
         setVisualRoll(Math.floor(Math.random() * 6) + 1)
-      }, 100)
+        playRollSound()
+      }, 150)
       return () => clearInterval(interval)
     }
   }, [isRolling])
@@ -74,8 +87,8 @@ export function GameControls({ players, currentPlayerIndex, lastRoll, isRolling,
             <p className="text-sm text-stone-500 mb-2">
               {isRolling ? "Dobbelsteen rolt..." : lastRoll !== null ? "Je gooide:" : "Klaar om te gooien!"}
             </p>
-            <div className={`inline-block relative transition-transform ${isRolling ? "animate-dice-roll shadow-xl ring-4 ring-amber-200 rounded-xl" : ""}`}>
-              <DiceFace value={isRolling ? visualRoll : (displayRoll?.base || 1)} />
+            <div className={`inline-block relative transition-transform ${isRolling ? "shadow-xl ring-4 ring-amber-200 rounded-xl" : ""}`}>
+              <DiceFace value={isRolling ? visualRoll : (displayRoll?.base || 1)} isRolling={isRolling} />
               {!isRolling && displayRoll && displayRoll.bonus > 0 && (
                 <div className="absolute -top-3 -right-4 bg-emerald-500 text-white font-bold text-sm px-2 py-0.5 rounded-full shadow-md animate-in zoom-in slide-in-from-bottom-2">
                   +{displayRoll.bonus}

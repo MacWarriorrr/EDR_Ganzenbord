@@ -12,6 +12,9 @@ import { Trophy } from "lucide-react"
 import { PlayerIcon } from "./PlayerIcon"
 import { useNavigate } from '@tanstack/react-router'
 
+import { triggerWinConfetti, playWinSound } from '@/lib/audio'
+import { useEffect } from 'react'
+
 interface WinnerModalProps {
   winner: Player | null
   onRestart: () => void
@@ -19,6 +22,13 @@ interface WinnerModalProps {
 
 export function WinnerModal({ winner, onRestart }: WinnerModalProps) {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (winner) {
+      triggerWinConfetti()
+      playWinSound()
+    }
+  }, [winner])
 
   if (!winner) return null
 
