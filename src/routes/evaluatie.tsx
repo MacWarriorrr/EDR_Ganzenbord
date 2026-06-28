@@ -18,10 +18,10 @@ function EvaluatieComponent() {
     e.preventDefault()
     setIsSubmitting(true)
     setError(null)
-    
+
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData.entries())
-    
+
     try {
       const res = await fetch('/api/submit-evaluation', {
         method: 'POST',
@@ -30,11 +30,11 @@ function EvaluatieComponent() {
         },
         body: JSON.stringify(data),
       })
-      
+
       if (!res.ok) {
         throw new Error('Er is een fout opgetreden bij het versturen van het formulier.')
       }
-      
+
       setIsSuccess(true)
     } catch (err: any) {
       setError(err.message || 'Onbekende fout')
@@ -63,7 +63,7 @@ function EvaluatieComponent() {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-10">
-          
+
           {/* Toestemming */}
           <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
             <h3 className="font-bold text-blue-900 mb-3">Toestemming (Consent)</h3>
@@ -78,21 +78,21 @@ function EvaluatieComponent() {
           {/* Achtergrondinformatie */}
           <section>
             <h2 className="text-xl font-bold text-stone-800 mb-4 pb-2 border-b">Achtergrondinformatie</h2>
-            
+
             <div className="space-y-4">
               <label className="block">
                 <span className="text-stone-700 font-semibold mb-2 block">Wat is uw primaire rol/achtergrond? <span className="text-red-500">*</span></span>
                 <select name="role" required className="w-full rounded-md border-stone-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border bg-white">
                   <option value="">Kies een optie...</option>
                   <option value="Onderwijsexpert">Onderwijsexpert / Docent (bijv. BOS-werkgroep)</option>
-                  <option value="Student">Student (bijv. medestudent Education Design Research)</option>
+                  <option value="Student">Student</option>
                   <option value="WPB">Werkplekbegeleider (WPB)</option>
                   <option value="SO">Schoolopleider (SO)</option>
                   <option value="IO">Instituutsopleider (IO)</option>
                   <option value="Anders">Anders</option>
                 </select>
               </label>
-              
+
               <label className="block">
                 <span className="text-stone-700 font-semibold mb-2 block">Indien 'Anders', specificeer:</span>
                 <input type="text" name="role_other" className="w-full rounded-md border-stone-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" />
@@ -103,7 +103,7 @@ function EvaluatieComponent() {
           {/* Deel 1 */}
           <section>
             <h2 className="text-xl font-bold text-stone-800 mb-4 pb-2 border-b">Deel 1: Realisme en Kennisvergroting (Deelvraag 1)</h2>
-            
+
             <div className="space-y-6">
               <div>
                 <p className="text-stone-700 font-semibold mb-2">1.1 In hoeverre kwamen de situaties en scenario's op de kaartjes in het spel realistisch op u over? <span className="text-red-500">*</span></p>
@@ -133,7 +133,7 @@ function EvaluatieComponent() {
           {/* Deel 2 */}
           <section>
             <h2 className="text-xl font-bold text-stone-800 mb-4 pb-2 border-b">Deel 2: Constructieve Benadering (Deelvraag 2)</h2>
-            
+
             <div className="space-y-6">
               <div>
                 <p className="text-stone-700 font-semibold mb-2">2.1 In hoeverre ervaarde u de toon van het spel als constructief en opbouwend? <span className="text-red-500">*</span></p>
@@ -171,7 +171,7 @@ function EvaluatieComponent() {
           {/* Deel 3 */}
           <section>
             <h2 className="text-xl font-bold text-stone-800 mb-4 pb-2 border-b">Deel 3: Spelmechanica en Ervaring (Deelvraag 3)</h2>
-            
+
             <div className="space-y-6">
               <div>
                 <p className="text-stone-700 font-semibold mb-2">3.1 In hoeverre hielp het gekozen spelmechanisme (het letterlijk vooruit of achteruit moeten stappen op het bord) om de impact van de situaties op de internationale docent goed over te brengen? <span className="text-red-500">*</span></p>
@@ -188,7 +188,7 @@ function EvaluatieComponent() {
 
               <div className="space-y-3">
                 <p className="text-stone-700 font-semibold mb-2">3.2 Hoe voelde de verhouding tussen de zwaarte van de obstakels (stappen terug) en de opstekers (stappen vooruit) tijdens het spelen? <span className="text-red-500">*</span></p>
-                
+
                 <label className="flex items-start gap-3 cursor-pointer">
                   <input type="radio" name="q3_2_balance" value="Te rooskleurig" required className="mt-1 w-5 h-5 text-blue-600 focus:ring-blue-500" />
                   <span className="text-stone-700"><strong>Te rooskleurig:</strong> De positieve spelregels en opstekers wogen veel zwaarder dan de obstakels.</span>
@@ -213,7 +213,7 @@ function EvaluatieComponent() {
           {/* Deel 4 */}
           <section>
             <h2 className="text-xl font-bold text-stone-800 mb-4 pb-2 border-b">Deel 4: Inzetbaarheid en Discussie (Deelvraag 4)</h2>
-            
+
             <div className="space-y-6">
               <div>
                 <p className="text-stone-700 font-semibold mb-2">4.1 In hoeverre hielp het spelen op één gezamenlijk scherm om de discussie met uw medespelers op gang te brengen? <span className="text-red-500">*</span></p>
@@ -256,8 +256,8 @@ function EvaluatieComponent() {
           )}
 
           <div className="pt-4 border-t">
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               disabled={isSubmitting}
               className="w-full sm:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg h-auto"
             >
