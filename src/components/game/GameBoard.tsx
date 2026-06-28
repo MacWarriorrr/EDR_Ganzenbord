@@ -1,4 +1,4 @@
-import { POSITIVE_TILES, NEGATIVE_TILES, PLAYER_COLORS } from './types'
+import { POSITIVE_TILES, NEGATIVE_TILES } from './types'
 import type { Player } from './types'
 import { cn } from '@/lib/utils'
 import { INITIAL_COORDINATES } from './boardCoordinates'
