@@ -41,7 +41,7 @@ function FactorenComponent() {
         <div className="mb-12 text-center max-w-3xl mx-auto">
           <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight mb-4">Factoren Databank</h1>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Hier vind je een overzicht van alle positieve en negatieve factoren die de integratie van International Student Teachers (ISD) beïnvloeden. Deze factoren komen willekeurig voor als je op speciale vakjes komt tijdens het spelen van het Ganzenbord.
+            Hier vind je een overzicht van alle positieve en negatieve factoren die de integratie van Internationale Student Docenten (ISD) beïnvloeden. Deze factoren komen willekeurig voor als je op speciale vakjes komt tijdens het spelen van het Ganzenbord.
           </p>
         </div>
 
@@ -51,8 +51,8 @@ function FactorenComponent() {
               onClick={() => setActiveTab('positive')}
               className={cn(
                 "flex-1 py-2.5 px-4 rounded-md font-semibold text-sm transition-all duration-200",
-                activeTab === 'positive' 
-                  ? "bg-emerald-500 text-white shadow-sm" 
+                activeTab === 'positive'
+                  ? "bg-emerald-500 text-white shadow-sm"
                   : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/50"
               )}
             >
@@ -62,8 +62,8 @@ function FactorenComponent() {
               onClick={() => setActiveTab('negative')}
               className={cn(
                 "flex-1 py-2.5 px-4 rounded-md font-semibold text-sm transition-all duration-200",
-                activeTab === 'negative' 
-                  ? "bg-rose-500 text-white shadow-sm" 
+                activeTab === 'negative'
+                  ? "bg-rose-500 text-white shadow-sm"
                   : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/50"
               )}
             >
@@ -74,7 +74,7 @@ function FactorenComponent() {
 
         <div className="animate-in fade-in duration-500 slide-in-from-bottom-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {activeTab === 'positive' 
+            {activeTab === 'positive'
               ? POSITIVE_FACTORS.map(factor => <FactorCard key={factor.id} factor={factor} />)
               : NEGATIVE_FACTORS.map(factor => <FactorCard key={factor.id} factor={factor} />)
             }
