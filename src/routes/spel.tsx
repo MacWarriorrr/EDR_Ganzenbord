@@ -7,6 +7,7 @@ import { GameControls } from '@/components/game/GameControls'
 import { EventHistory } from '@/components/game/EventHistory'
 import { EventModal } from '@/components/game/EventModal'
 import { WinnerModal } from '@/components/game/WinnerModal'
+import { MentorIntroModal } from '@/components/game/MentorIntroModal'
 
 export const Route = createRoute({
   getParentRoute: () => rootRoute,
@@ -24,8 +25,11 @@ function SpelComponent() {
     winner,
     isRolling,
     isMoving,
+    showMentorIntro,
     eventHistory,
+    isShaking,
     startGame,
+    closeMentorIntro,
     handleRoll,
     applyEvent
   } = useGameState()
@@ -42,10 +46,18 @@ function SpelComponent() {
           <GameSetup onStart={startGame} />
         ) : (
           <div className="animate-in fade-in duration-500 flex flex-col lg:flex-row gap-4 xl:gap-8 items-start justify-center">
-            <div className="flex-1 w-full">
+            {/* Linker kolom: Kaartenbak */}
+            <div className="w-full lg:w-80 shrink-0 lg:sticky lg:top-8 order-3 lg:order-1">
+              <EventHistory history={eventHistory} />
+            </div>
+
+            {/* Midden kolom: Bord */}
+            <div className={`flex-1 w-full order-1 lg:order-2 ${isShaking ? 'shake-screen' : ''}`}>
               <GameBoard players={players} />
             </div>
-            <div className="w-full lg:w-80 shrink-0 sticky top-8">
+
+            {/* Rechter kolom: Controls */}
+            <div className="w-full lg:w-80 shrink-0 lg:sticky lg:top-8 order-2 lg:order-3">
               <GameControls 
                 players={players}
                 currentPlayerIndex={currentPlayerIndex}
@@ -54,7 +66,6 @@ function SpelComponent() {
                 onRoll={handleRoll}
                 disabled={!!activeEvent || !!winner || isMoving || isRolling}
               />
-              <EventHistory history={eventHistory} />
             </div>
           </div>
         )}
@@ -66,8 +77,16 @@ function SpelComponent() {
 
         <WinnerModal 
           winner={winner} 
-          onRestart={() => startGame(players.length)} 
+          onRestart={() => startGame(players.map(p => p.name))} 
         />
+
+        {gameStarted && (
+          <MentorIntroModal
+            players={players}
+            open={showMentorIntro}
+            onClose={closeMentorIntro}
+          />
+        )}
       </div>
     </div>
   )

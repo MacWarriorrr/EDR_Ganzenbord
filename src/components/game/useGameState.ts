@@ -1,28 +1,37 @@
 import { useState, useRef } from 'react'
-import { POSITIVE_TILES, NEGATIVE_TILES, PLAYER_COLORS, type Player, type GameEvent, type HistoryEvent } from './types'
+import { POSITIVE_TILES, NEGATIVE_TILES, PLAYER_COLORS, type Player, type GameEvent, type HistoryEvent, type RollResult } from './types'
 import { POSITIVE_FACTORS, NEGATIVE_FACTORS } from '@/data/factors'
+import confetti from 'canvas-confetti'
 
 export function useGameState() {
   const [gameStarted, setGameStarted] = useState(false)
   const [players, setPlayers] = useState<Player[]>([])
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0)
-  const [lastRoll, setLastRoll] = useState<number | null>(null)
+  const [lastRoll, setLastRoll] = useState<RollResult | null>(null)
   const [activeEvent, setActiveEvent] = useState<GameEvent | null>(null)
   const [winner, setWinner] = useState<Player | null>(null)
   const [usedFactors, setUsedFactors] = useState<string[]>([])
   const [isRolling, setIsRolling] = useState(false)
   const [isMoving, setIsMoving] = useState(false)
+  const [showMentorIntro, setShowMentorIntro] = useState(false)
   const [eventHistory, setEventHistory] = useState<HistoryEvent[]>([])
+  const [isShaking, setIsShaking] = useState(false)
   const isApplyingEventRef = useRef(false)
 
-  const startGame = (numPlayers: number) => {
-    const newPlayers: Player[] = Array.from({ length: numPlayers }).map((_, i) => ({
-      id: i + 1,
-      color: PLAYER_COLORS[i].hex,
-      colorName: PLAYER_COLORS[i].name,
-      position: 1,
-      skipNextTurn: false,
-    }))
+  const startGame = (playerNames: string[]) => {
+    const newPlayers: Player[] = playerNames.map((name, i) => {
+      const hasGoodMentor = Math.random() > 0.5
+      return {
+        id: i + 1,
+        name: name || `Speler ${i + 1}`,
+        color: PLAYER_COLORS[i].hex,
+        colorName: PLAYER_COLORS[i].name,
+        position: 1,
+        skipNextTurn: false,
+        hasGoodMentor,
+        mentorBonusTurnsLeft: hasGoodMentor ? 3 : 0
+      }
+    })
     setPlayers(newPlayers)
     setCurrentPlayerIndex(0)
     setGameStarted(true)
@@ -33,6 +42,12 @@ export function useGameState() {
     setIsRolling(false)
     setIsMoving(false)
     setEventHistory([])
+    setShowMentorIntro(true)
+    setIsShaking(false)
+  }
+
+  const closeMentorIntro = () => {
+    setShowMentorIntro(false)
   }
 
   const nextTurn = () => {
@@ -66,13 +81,26 @@ export function useGameState() {
     setLastRoll(null)
 
     setTimeout(() => {
-      const roll = Math.floor(Math.random() * 6) + 1
-      setLastRoll(roll)
+      const player = players[currentPlayerIndex]
+      const hasBonus = player.mentorBonusTurnsLeft ? player.mentorBonusTurnsLeft > 0 : false
+      
+      const baseRoll = Math.floor(Math.random() * 6) + 1
+      const bonus = hasBonus ? 1 : 0
+      const totalRoll = baseRoll + bonus
+
+      setLastRoll({ base: baseRoll, bonus, total: totalRoll })
       setIsRolling(false)
       setIsMoving(true)
 
-      const player = players[currentPlayerIndex]
-      const targetPosition = Math.min(64, player.position + roll)
+      if (hasBonus) {
+        setPlayers(prev => prev.map((p, i) => 
+          i === currentPlayerIndex 
+            ? { ...p, mentorBonusTurnsLeft: (p.mentorBonusTurnsLeft || 0) - 1 } 
+            : p
+        ))
+      }
+
+      const targetPosition = Math.min(64, player.position + totalRoll)
       let currentPos = player.position
 
       const step = () => {
@@ -111,8 +139,18 @@ export function useGameState() {
               const randomFactor = availableFactors[Math.floor(Math.random() * availableFactors.length)]
               
               setTimeout(() => {
-                 setActiveEvent({ tile: currentPos, factor: randomFactor })
-                 setIsMoving(false)
+                 if (type === 'positive') {
+                   setActiveEvent({ tile: currentPos, factor: randomFactor })
+                   confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } })
+                   setIsMoving(false)
+                 } else {
+                   setIsShaking(true)
+                   setTimeout(() => {
+                     setIsShaking(false)
+                     setActiveEvent({ tile: currentPos, factor: randomFactor })
+                     setIsMoving(false)
+                   }, 500)
+                 }
               }, 1000)
               
               return [...prevUsed, randomFactor.id]
@@ -182,8 +220,11 @@ export function useGameState() {
     winner,
     isRolling,
     isMoving,
+    showMentorIntro,
     eventHistory,
+    isShaking,
     startGame,
+    closeMentorIntro,
     handleRoll,
     applyEvent
   }

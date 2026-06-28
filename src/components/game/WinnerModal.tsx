@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button"
 import type { Player } from "./types"
 import { Trophy } from "lucide-react"
+import { PlayerIcon } from "./PlayerIcon"
 
 interface WinnerModalProps {
   winner: Player | null
@@ -31,9 +32,12 @@ export function WinnerModal({ winner, onRestart }: WinnerModalProps) {
           <DialogDescription className="text-lg text-stone-700 py-2 font-medium">
             Je bent succesvol geïntegreerd!
           </DialogDescription>
-          <p className="text-sm text-stone-500 mt-2">
-            Speler {winner.colorName} heeft als eerste vakje 64 bereikt.
-          </p>
+          <div className="flex items-center justify-center gap-2 mt-2">
+            <PlayerIcon playerId={winner.id} color={winner.color} size={20} />
+            <p className="text-sm text-stone-500 font-medium">
+              {winner.name} heeft als eerste vakje 64 bereikt.
+            </p>
+          </div>
         </DialogHeader>
         <DialogFooter className="sm:justify-center mt-6">
           <Button 

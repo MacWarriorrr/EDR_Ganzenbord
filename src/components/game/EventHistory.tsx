@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Sparkles, AlertTriangle, ChevronDown, ChevronUp, History } from 'lucide-react'
 import type { HistoryEvent } from './types'
+import { PlayerIcon } from './PlayerIcon'
 
 interface EventHistoryProps {
   history: HistoryEvent[]
@@ -15,7 +16,7 @@ export function EventHistory({ history }: EventHistoryProps) {
   }
 
   return (
-    <Card id="kaartenbak" className="max-w-md mx-auto mt-8 shadow-lg border-stone-200 w-full overflow-hidden flex flex-col max-h-[500px]">
+    <Card id="kaartenbak" className="max-w-md mx-auto shadow-lg border-stone-200 w-full overflow-hidden flex flex-col max-h-[500px]">
       <CardHeader className="bg-stone-50 border-b border-stone-200 py-4 z-10 shrink-0">
         <div className="flex items-center gap-2 text-stone-700">
           <History className="w-5 h-5" />
@@ -41,12 +42,10 @@ export function EventHistory({ history }: EventHistoryProps) {
                 onClick={() => toggleExpand(item.id)}
               >
                 <div className="p-4 flex items-start gap-3">
-                  {/* Speler kleur accent */}
-                  <div 
-                    className="w-2 h-12 rounded-full shrink-0" 
-                    style={{ backgroundColor: item.player.color }}
-                    title={`Getrokken door ${item.player.colorName}`}
-                  />
+                  {/* Speler icoon */}
+                  <div className="shrink-0 pt-1" title={`Getrokken door ${item.player.name}`}>
+                    <PlayerIcon playerId={item.player.id} color={item.player.color} size={24} />
+                  </div>
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-start gap-2 mb-1">
@@ -62,7 +61,7 @@ export function EventHistory({ history }: EventHistoryProps) {
                     </div>
                     
                     <p className="text-xs text-stone-500 truncate">
-                      Speler {item.player.colorName} trok deze kaart.
+                      {item.player.name} trok deze kaart.
                     </p>
                   </div>
 

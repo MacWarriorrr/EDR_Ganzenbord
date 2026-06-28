@@ -3,6 +3,7 @@ import type { Player } from './types'
 import { cn } from '@/lib/utils'
 import { INITIAL_COORDINATES, type Coordinate } from './boardCoordinates'
 import BordAchtergrond from '@/assets/BordAchtergrond.png'
+import { PlayerIcon } from './PlayerIcon'
 
 interface GameBoardProps {
   players: Player[]
@@ -13,9 +14,13 @@ export function GameBoard({ players }: GameBoardProps) {
   const coords = INITIAL_COORDINATES
 
   return (
-    <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-xl border border-stone-100 w-full">
+    <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-xl border border-stone-100 w-full flex justify-center items-center">
       <div 
-        className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-inner border-2 border-stone-200 bg-stone-100 touch-none select-none"
+        className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-inner border-2 border-stone-200 bg-stone-100 touch-none select-none mx-auto"
+        style={{
+          maxHeight: 'calc(100vh - 16rem)',
+          maxWidth: 'calc((100vh - 16rem) * 4 / 3)'
+        }}
       >
         <img 
           src={BordAchtergrond} 
@@ -72,16 +77,15 @@ export function GameBoard({ players }: GameBoardProps) {
             <div 
               key={p.id}
               className={cn(
-                "absolute w-6 h-6 rounded-full shadow-xl ring-2 ring-white z-50 transition-all duration-300 ease-linear -ml-3 -mt-3",
-                colorObj?.bgClass || "bg-stone-800"
+                "absolute z-50 transition-all duration-300 ease-linear flex items-center justify-center -ml-4 -mt-4 hover:scale-110"
               )}
               style={{
                 left: `${finalX}%`,
                 top: `${finalY}%`,
               }}
-              title={`Speler ${p.id} (${p.colorName})`}
+              title={p.name}
             >
-              <div className="absolute inset-0 rounded-full bg-black/15 shadow-[inset_0_2px_4px_rgba(255,255,255,0.5)]" />
+              <PlayerIcon playerId={p.id} color={p.color} size={36} />
             </div>
           );
         })}

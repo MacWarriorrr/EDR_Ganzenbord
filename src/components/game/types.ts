@@ -2,11 +2,20 @@ import type { Factor } from '@/data/factors'
 
 export interface Player {
   id: number
+  name: string
   color: string
   colorName: string
   position: number
   skipNextTurn: boolean
   extraTurn?: boolean
+  hasGoodMentor?: boolean
+  mentorBonusTurnsLeft?: number
+}
+
+export interface RollResult {
+  base: number
+  bonus: number
+  total: number
 }
 
 export interface GameEvent {
