@@ -16,6 +16,35 @@ interface GameControlsProps {
 }
 
 const DiceFace = ({ value, isRolling }: { value: number, isRolling: boolean }) => {
+  const [rotX, setRotX] = useState(0);
+  const [rotY, setRotY] = useState(0);
+
+  useEffect(() => {
+    if (isRolling) {
+      setRotX(prev => prev + 720 + Math.floor(Math.random() * 360));
+      setRotY(prev => prev + 720 + Math.floor(Math.random() * 360));
+    } else {
+      const baseRotations: Record<number, {x: number, y: number}> = {
+        1: { x: 0, y: 0 },
+        2: { x: 0, y: -90 },
+        3: { x: 0, y: -180 },
+        4: { x: 0, y: 90 },
+        5: { x: -90, y: 0 },
+        6: { x: 90, y: 0 }
+      };
+      const target = baseRotations[value] || baseRotations[1];
+      
+      setRotX(prev => {
+        const snap = Math.round(prev / 360) * 360;
+        return snap + target.x;
+      });
+      setRotY(prev => {
+        const snap = Math.round(prev / 360) * 360;
+        return snap + target.y;
+      });
+    }
+  }, [isRolling, value]);
+
   const dots = Array.from({ length: 9 }).map((_, i) => i);
   const activeDots: Record<number, number[]> = {
     1: [4],
@@ -39,7 +68,14 @@ const DiceFace = ({ value, isRolling }: { value: number, isRolling: boolean }) =
 
   return (
     <div className="dice-scene mx-auto mb-4">
-      <div className={`dice-cube ${isRolling ? 'rolling' : `show-${value}`}`}>
+      <div 
+        className="dice-cube"
+        style={{
+          transform: `rotateX(${rotX}deg) rotateY(${rotY}deg)`,
+          transitionTimingFunction: isRolling ? 'linear' : 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          transitionDuration: isRolling ? '1200ms' : '600ms'
+        }}
+      >
         {renderFace(1, 'cube-face-front')}
         {renderFace(2, 'cube-face-right')}
         {renderFace(3, 'cube-face-back')}
@@ -53,7 +89,6 @@ const DiceFace = ({ value, isRolling }: { value: number, isRolling: boolean }) =
 
 export function GameControls({ players, currentPlayerIndex, lastRoll, isRolling, onRoll, disabled }: GameControlsProps) {
   const currentPlayer = players[currentPlayerIndex]
-  const [visualRoll, setVisualRoll] = useState<number>(1)
   const [displayRoll, setDisplayRoll] = useState<RollResult | null>(null)
 
   useEffect(() => {
@@ -65,7 +100,6 @@ export function GameControls({ players, currentPlayerIndex, lastRoll, isRolling,
   useEffect(() => {
     if (isRolling) {
       const interval = setInterval(() => {
-        setVisualRoll(Math.floor(Math.random() * 6) + 1)
         playRollSound()
       }, 150)
       return () => clearInterval(interval)
@@ -88,7 +122,7 @@ export function GameControls({ players, currentPlayerIndex, lastRoll, isRolling,
               {isRolling ? "Dobbelsteen rolt..." : lastRoll !== null ? "Je gooide:" : "Klaar om te gooien!"}
             </p>
             <div className={`inline-block relative transition-transform ${isRolling ? "shadow-xl ring-4 ring-amber-200 rounded-xl" : ""}`}>
-              <DiceFace value={isRolling ? visualRoll : (displayRoll?.base || 1)} isRolling={isRolling} />
+              <DiceFace value={displayRoll?.base || 1} isRolling={isRolling} />
               {!isRolling && displayRoll && displayRoll.bonus > 0 && (
                 <div className="absolute -top-3 -right-4 bg-emerald-500 text-white font-bold text-sm px-2 py-0.5 rounded-full shadow-md animate-in zoom-in slide-in-from-bottom-2">
                   +{displayRoll.bonus}

@@ -175,7 +175,7 @@ export function useGameState() {
           setIsMoving(false)
         }, 1000)
       }
-    }, 1000)
+    }, 1200)
   }
 
   const applyEvent = () => {

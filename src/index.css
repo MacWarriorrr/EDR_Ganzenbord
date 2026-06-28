@@ -171,10 +171,7 @@
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.dice-cube.rolling {
-  animation: roll-3d 0.6s linear infinite;
+  transition-property: transform;
 }
 .cube-face {
   position: absolute;
@@ -204,10 +201,3 @@
 .cube-face-left   { transform: rotateY(-90deg) translateZ(32px); }
 .cube-face-top    { transform: rotateX( 90deg) translateZ(32px); }
 .cube-face-bottom { transform: rotateX(-90deg) translateZ(32px); }
-
-.dice-cube.show-1 { transform: rotateY(0deg) rotateX(0deg); }
-.dice-cube.show-2 { transform: rotateY(-90deg) rotateX(0deg); }
-.dice-cube.show-3 { transform: rotateY(-180deg) rotateX(0deg); }
-.dice-cube.show-4 { transform: rotateY(90deg) rotateX(0deg); }
-.dice-cube.show-5 { transform: rotateX(-90deg) rotateY(0deg); }
-.dice-cube.show-6 { transform: rotateX(90deg) rotateY(0deg); }

@@ -34,7 +34,7 @@ export function WinnerModal({ winner, onRestart }: WinnerModalProps) {
 
   return (
     <Dialog open={!!winner} onOpenChange={(open) => !open && onRestart()}>
-      <DialogContent className="sm:max-w-md text-center border-emerald-200">
+      <DialogContent className="sm:max-w-lg text-center border-emerald-200">
         <DialogHeader>
           <div className="mx-auto w-20 h-20 rounded-full bg-yellow-100 flex items-center justify-center mb-4 text-yellow-500 shadow-inner">
             <Trophy size={40} />
@@ -52,21 +52,21 @@ export function WinnerModal({ winner, onRestart }: WinnerModalProps) {
             </p>
           </div>
         </DialogHeader>
-        <DialogFooter className="sm:justify-center mt-6 flex flex-col sm:flex-row gap-3">
+        <div className="mt-6 flex flex-col gap-3 w-full sm:w-4/5 mx-auto">
           <Button 
             onClick={onRestart}
-            className="w-full sm:w-auto px-6 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg"
+            className="w-full px-6 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg"
           >
             Speel Opnieuw
           </Button>
           <Button 
             onClick={() => navigate({ to: '/evaluatie' })}
             variant="outline"
-            className="w-full sm:w-auto px-6 border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold text-lg"
+            className="w-full px-6 border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold text-lg"
           >
             Naar Evaluatieformulier
           </Button>
-        </DialogFooter>
+        </div>
       </DialogContent>
     </Dialog>
   )
