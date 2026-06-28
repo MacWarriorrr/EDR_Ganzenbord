@@ -165,7 +165,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Systeem-uitsluiting',
     description: 'Je staat voor een gesloten lokaal zonder sleutel en je hebt geen wifi of inlog voor Magister. Na weken kom je er pas toevallig achter dat er een systeem is voor digitaal lesmateriaal.',
     actionText: 'Sla 1 beurt over.',
-    action: (p) => ({ skipNextTurn: true })
+    action: () => ({ skipNextTurn: true })
   },
   {
     id: 'n2',
@@ -173,7 +173,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'De "Kijk-maar-valkuil" en passiviteit',
     description: 'Je zit al wekenlang stil achterin de klas te observeren en mag zelf niets doen. De verveling slaat toe, je leermotivatie keldert en je mist de kans om zelf van je fouten te leren.',
     actionText: 'Sla 1 beurt over.',
-    action: (p) => ({ skipNextTurn: true })
+    action: () => ({ skipNextTurn: true })
   },
   {
     id: 'n3',
@@ -261,7 +261,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Cognitieve overbelasting',
     description: 'Je komt thuis van je stage en moet eigenlijk nog aan je masteropleiding werken én Nederlandse woordjes stampen. Je bent compleet gesloopt en de stress wordt je te veel.',
     actionText: 'Sla 1 beurt over.',
-    action: (p) => ({ skipNextTurn: true })
+    action: () => ({ skipNextTurn: true })
   },
   {
     id: 'n14',
@@ -285,7 +285,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Belemmeringen in de communicatie',
     description: 'Je wilt een groepje luidruchtige leerlingen in de gang aanspreken, maar uit angst dat je een taalfout maakt slik je je woorden in en loop je met een boogje om ze heen.',
     actionText: 'Sla 1 beurt over.',
-    action: (p) => ({ skipNextTurn: true })
+    action: () => ({ skipNextTurn: true })
   },
   {
     id: 'n17',
@@ -325,7 +325,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Werkplekbegeleider',
     description: 'Je vaste aanspreekpunt blijkt een docent te zijn van een heel ander vakgebied die maar twee dagen per week op school is. Je voelt je in de steek gelaten en moet alles zelf uitzoeken.',
     actionText: 'Sla 1 beurt over.',
-    action: (p) => ({ skipNextTurn: true })
+    action: () => ({ skipNextTurn: true })
   },
   {
     id: 'n22',

@@ -10,7 +10,7 @@ export function useGameState() {
   const [lastRoll, setLastRoll] = useState<RollResult | null>(null)
   const [activeEvent, setActiveEvent] = useState<GameEvent | null>(null)
   const [winner, setWinner] = useState<Player | null>(null)
-  const [usedFactors, setUsedFactors] = useState<string[]>([])
+  const [, setUsedFactors] = useState<string[]>([])
   const [isRolling, setIsRolling] = useState(false)
   const [isMoving, setIsMoving] = useState(false)
   const [showMentorIntro, setShowMentorIntro] = useState(false)

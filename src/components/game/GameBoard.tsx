@@ -1,7 +1,7 @@
 import { POSITIVE_TILES, NEGATIVE_TILES, PLAYER_COLORS } from './types'
 import type { Player } from './types'
 import { cn } from '@/lib/utils'
-import { INITIAL_COORDINATES, type Coordinate } from './boardCoordinates'
+import { INITIAL_COORDINATES } from './boardCoordinates'
 import BordAchtergrond from '@/assets/BordAchtergrond.png'
 import { PlayerIcon } from './PlayerIcon'
 import { Sparkles, TriangleAlert } from 'lucide-react'
@@ -77,8 +77,6 @@ export function GameBoard({ players }: GameBoardProps) {
           
           const finalX = pos.x + (Math.cos(angle) * offsetRadius);
           const finalY = pos.y + (Math.sin(angle) * offsetRadius);
-
-          const colorObj = PLAYER_COLORS.find(c => c.hex === p.color);
 
           return (
             <div 
