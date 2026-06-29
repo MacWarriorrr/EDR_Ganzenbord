@@ -24,7 +24,7 @@ export const POSITIVE_FACTORS: Factor[] = [
     id: 'p2',
     type: 'positive',
     title: 'Asset-based inzet',
-    description: 'Je geeft een gastles over je thuisland en je eerdere werkervaring als docent. De leerlingen hangen aan je lippen; dit geeft je een enorme boost aan zelfvertrouwen!',
+    description: 'Je geeft een gastles over je thuisland of je eerdere werkervaring. De leerlingen hangen aan je lippen; dit geeft je een enorme boost aan zelfvertrouwen!',
     actionText: 'Ga 3 stappen vooruit en gooi nog een keer.',
     action: (p) => ({ position: Math.min(64, p.position + 3), extraTurn: true })
   },
@@ -170,7 +170,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
   {
     id: 'n2',
     type: 'negative',
-    title: 'De "Kijk-maar-valkuil" en passiviteit',
+    title: 'De "Kijk-maar-valkuil"',
     description: 'Je zit al wekenlang stil achterin de klas te observeren en mag zelf niets doen. De verveling slaat toe, je leermotivatie keldert en je mist de kans om zelf van je fouten te leren.',
     actionText: 'Sla 1 beurt over.',
     action: () => ({ skipNextTurn: true })
@@ -275,7 +275,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     id: 'n15',
     type: 'negative',
     title: 'Kennisgat in het schoolsysteem',
-    description: 'Tijdens een docentenvergadering gaat het minutenlang over de overgangsnormen van havo-4 naar vwo-5. Je kent deze typisch Nederlandse schoolsysteem-termen niet en voelt je compleet buitengesloten.',
+    description: 'Tijdens een docentenvergadering gaat het minutenlang over de overgangsnormen van havo-4 naar vwo-5. Je kent deze typisch Nederlandse schoolsysteem-termen niet en kunt niet meepraten.',
     actionText: 'Ga 1 stap terug.',
     action: (p) => ({ position: Math.max(1, p.position - 1) })
   },
@@ -315,7 +315,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     id: 'n20',
     type: 'negative',
     title: 'Last-minute informatie',
-    description: 'Pas tien minuten voor de bel gaat, roept je begeleider dat jij vandaag tóch de hele les over de Gouden Eeuw mag geven. Je raakt volledig in paniek door deze onverwachte actie.',
+    description: 'Pas tien minuten voor de bel gaat, roept je begeleider dat jij vandaag tóch de hele les over de relativiteitstheorie mag geven. Je raakt volledig in paniek door deze onverwachte actie.',
     actionText: 'Ga 1 stap terug.',
     action: (p) => ({ position: Math.max(1, p.position - 1) })
   },
