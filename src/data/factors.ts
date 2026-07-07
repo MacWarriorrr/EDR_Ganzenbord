@@ -184,7 +184,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Systeem-uitsluiting',
     description: 'Je staat voor een gesloten lokaal zonder sleutel en je hebt geen wifi of inlog voor Magister. Na weken kom je er pas toevallig achter dat er een systeem is voor digitaal lesmateriaal.',
     actionText: 'Sla 1 beurt over.',
-    conversationPrompt: 'Ligt de schuld van systeem-uitsluiting bij gebrekkige onboarding, of bij een cultuur waarin we ervan uitgaan dat \'iedereen wel weet hoe het hier werkt\'?',
+    conversationPrompt: 'Hoe kunnen we onze onboarding zo inrichten dat impliciete kennis over systemen en werkwijzen expliciet en toegankelijk wordt gemaakt voor iedereen?',
     action: () => ({ skipNextTurn: true })
   },
   {
@@ -193,7 +193,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'De "Kijk-maar-valkuil"',
     description: 'Je zit al wekenlang stil achterin de klas te observeren en mag zelf niets doen. De verveling slaat toe, je leermotivatie keldert en je mist de kans om zelf van je fouten te leren.',
     actionText: 'Sla 1 beurt over.',
-    conversationPrompt: 'Waarom laten we internationale docenten vaak langer observeren dan Nederlandse docenten? Speelt hier onbewust een gebrek aan vertrouwen in hun kunnen mee?',
+    conversationPrompt: 'Hoe vinden we samen met de docent een goede balans tussen de tijd voor veilige observatie en het tijdig bieden van kansen om zelf vlieguren te maken?',
     action: () => ({ skipNextTurn: true })
   },
   {
@@ -202,7 +202,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Taal als harde barrière',
     description: 'Je stelt voor om de volgende les een stukje uit te leggen. Je begeleider zegt hardop: "Nee, jouw Nederlands is nog niet goed genoeg, dat gaat ten koste van de leerlingen." Au.',
     actionText: 'Ga 3 stappen terug.',
-    conversationPrompt: 'Wanneer is taal écht een belemmering voor het leerproces van de leerling, en wanneer gebruiken we het als excuus om af te wijken van onze inclusieplicht?',
+    conversationPrompt: 'Op welke alternatieve manieren kan een docent complexe stof succesvol overbrengen als de gesproken taal tijdelijk nog een uitdaging vormt?',
     action: (p) => ({ position: Math.max(1, p.position - 3) })
   },
   {
@@ -211,7 +211,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Vocabulaire',
     description: 'Je staat voor de klas en wilt een abstract concept uitleggen, maar je komt simpelweg niet op de Nederlandse term. Je hapert, de klas wordt onrustig en je verliest je flow.',
     actionText: 'Ga 1 stap terug.',
-    conversationPrompt: 'Hoe creëren we een klasseklimaat waarin een docent die hapert om een woord te vinden, niet direct gezag verliest, maar waar kwetsbaarheid juist wordt gewaardeerd?',
+    conversationPrompt: 'Hoe kunnen we als school een leerklimaat bevorderen waarin fouten maken in taal wordt gezien als onderdeel van een moedig leerproces, in plaats van gezagsverlies?',
     action: (p) => ({ position: Math.max(1, p.position - 1) })
   },
   {
@@ -220,7 +220,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Irrelevante toetsing',
     description: 'Je bent hard aan het blokken voor je verplichte taaltoets, maar de woordenlijsten gaan over willekeurige onderwerpen zoals politiek, terwijl jij in jouw vakles hele andere termen nodig hebt.',
     actionText: 'Ga 2 stappen terug.',
-    conversationPrompt: 'In hoeverre zijn gestandaardiseerde taaleisen een vorm van institutionele uitsluiting voor internationale professionals met veel vakspecifieke expertise?',
+    conversationPrompt: 'Hoe kunnen we de taaleisen en -toetsing beter en realistischer laten aansluiten op het specifieke vakjargon en de dagelijkse praktijk van de docent?',
     action: (p) => ({ position: Math.max(1, p.position - 2) })
   },
   {
@@ -229,7 +229,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Ongeschreven regels',
     description: 'Je bent niet komen opdagen bij het schoolfeest, omdat niemand je had verteld dat het voor stagiairs ook gewenst is om mee te helpen. Collega\'s kijken je de volgende dag scheef aan.',
     actionText: 'Ga 1 stap terug.',
-    conversationPrompt: 'Hoe kunnen we onze eigen ongeschreven regels expliciteren, zonder onszelf als de absolute \'norm\' en de ander als de \'afwijking\' te positioneren?',
+    conversationPrompt: 'Hoe kunnen we ongeschreven regels (zoals verwachtingen rondom schoolfeesten) op een open, respectvolle manier vooraf bespreekbaar maken?',
     action: (p) => ({ position: Math.max(1, p.position - 1) })
   },
   {
@@ -238,7 +238,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Cultuurverschillen',
     description: 'Een leerling reageert heel direct op je. Je weet niet dat deze mondigheid hier in de klas heel normaal is, waardoor je veel te streng reageert en het conflict escaleert.',
     actionText: 'Ga 2 stappen terug.',
-    conversationPrompt: 'Zijn we bereid om onze eigen \'normale\' directheid in de klas kritisch te bekijken, in plaats van alleen van de internationale docent te verwachten dat zij zich aanpassen?',
+    conversationPrompt: 'Hoe begeleiden we internationale docenten in het navigeren van de directe communicatiestijl van Nederlandse leerlingen, zonder deze stijl als enige \'waarheid\' op te leggen?',
     action: (p) => ({ position: Math.max(1, p.position - 2) })
   },
   {
@@ -247,7 +247,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Uitsluiting door lunch en pauzes',
     description: 'Je eet je boterhammen alleen in een leeg kantoortje, omdat niemand je vertelt wanneer en waar het team samen luncht. Als je toch aanschuift, praat iedereen zo snel over privézaken dat je geen woord meekrijgt.',
     actionText: 'Ga 2 stappen terug.',
-    conversationPrompt: 'Als iedereen \'gewoon\' in hoog tempo Nederlands praat tijdens de lunch, zijn we dan als team medeplichtig aan de isolatie van onze internationale collega?',
+    conversationPrompt: 'Wat kunnen we als team concreet doen om de teamlunch voor iedereen toegankelijk en ontspannen te maken, ongeacht het instapniveau van de taal?',
     action: (p) => ({ position: Math.max(1, p.position - 2) })
   },
   {
@@ -256,7 +256,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Verscholen vooroordelen',
     description: 'Wanneer je hapert bij het zoeken naar de juiste Nederlandse woorden tijdens een overleg, zucht een collega en insinueert hij dat je de vakkennis niet beheerst.',
     actionText: 'Ga 3 stappen terug.',
-    conversationPrompt: 'Hoe spreek je een collega aan die (onbewust) de taalvaardigheid van een internationale docent verwart met een gebrek aan didactische of vakinhoudelijke competentie?',
+    conversationPrompt: 'Hoe creëren we bewustwording in ons team dat (onvoldoende) taalvaardigheid en vakinhoudelijke competentie twee gescheiden zaken zijn?',
     action: (p) => ({ position: Math.max(1, p.position - 3) })
   },
   {
@@ -265,7 +265,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Taal ondersteuning',
     description: 'In de lerarenkamer wordt een belangrijk nieuwtje verteld, maar in hoog tempo. Je vraagt of ze het in het Engels kunnen herhalen, maar ze gaan gewoon in rap Nederlands verder.',
     actionText: 'Ga 1 stap terug.',
-    conversationPrompt: 'Is de weigering om even over te schakelen naar het Engels in de lerarenkamer een teken van tijdsgebrek, of een dieperliggende onwil om ruimte te maken voor de ander?',
+    conversationPrompt: 'In welke situaties is het functioneel en gastvrij om tijdelijk over te schakelen op Engels, zodat cruciale informatie door iedereen begrepen wordt?',
     action: (p) => ({ position: Math.max(1, p.position - 1) })
   },
   {
@@ -274,7 +274,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Ontbreken van formele introductie',
     description: 'Je loopt de docentenkamer in, maar niemand weet wie je bent. Je moet voor de zoveelste keer aan vreemde gezichten uitleggen dat je hier stage loopt.',
     actionText: 'Ga 2 stappen terug.',
-    conversationPrompt: 'Wat zegt het over onze schoolorganisatie als nieuwe, internationale collega\'s zichzelf keer op keer moeten verantwoorden bij de koffieautomaat?',
+    conversationPrompt: 'Hoe zorgen we structureel voor een bredere introductie van nieuwe collega\'s, zodat zij direct bij de start door het hele team gekend worden?',
     action: (p) => ({ position: Math.max(1, p.position - 2) })
   },
   {
@@ -283,7 +283,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Onduidelijke verwachtingen',
     description: 'Een collega vraagt geïrriteerd waarom jij na een maand nog steeds geen hele klas draait, in tegenstelling tot andere stagiairs. Jouw specifieke en aangepaste stageleerdoelen blijken nergens bekend te zijn.',
     actionText: 'Ga 2 stappen terug.',
-    conversationPrompt: 'Hoe voorkomen we dat stagiairs slachtoffer worden van gebrekkige interne communicatie over aangepaste trajecten, waardoor zij onterecht als \'traag\' of \'incompetent\' worden gezien?',
+    conversationPrompt: 'Hoe borgen we dat maatwerktrajecten en aangepaste leerdoelen helder gecommuniceerd worden naar het bredere team, om onrealistische verwachtingen te voorkomen?',
     action: (p) => ({ position: Math.max(1, p.position - 2) })
   },
   {
@@ -292,7 +292,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Cognitieve overbelasting',
     description: 'Je komt thuis van je stage en moet eigenlijk nog aan je masteropleiding werken én Nederlandse woordjes stampen. Je bent compleet gesloopt en de stress wordt je te veel.',
     actionText: 'Sla 1 beurt over.',
-    conversationPrompt: 'Hebben we als werkplek realistische verwachtingen van de enorme extra cognitieve load die het werken in een tweede taal en nieuwe cultuur met zich meebrengt?',
+    conversationPrompt: 'Hoe kunnen we de werkdruk in de beginfase aanpassen om ruimte te bieden voor de enorme cognitieve uitdaging van het werken in een nieuwe taal en cultuur?',
     action: () => ({ skipNextTurn: true })
   },
   {
@@ -301,7 +301,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Lesvoorbereiding',
     description: 'Je bent je hele zondag kwijt aan het voorbereiden van één simpele les, simpelweg omdat je overal in verschillende mappen en systemen moet zoeken naar de exameneisen en het lesmateriaal.',
     actionText: 'Ga 2 stappen terug.',
-    conversationPrompt: 'Zijn onze systemen en mappenstructuren eigenlijk onnodig complex ontworpen?',
+    conversationPrompt: 'Hoe kunnen we onze lesmaterialen en systemen intuïtiever inrichten, zodat voorbereidingstijd daadwerkelijk besteed wordt aan didactiek in plaats van aan zoeken?',
     action: (p) => ({ position: Math.max(1, p.position - 2) })
   },
   {
@@ -310,7 +310,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Kennisgat in het schoolsysteem',
     description: 'Tijdens een docentenvergadering gaat het minutenlang over de overgangsnormen van havo-4 naar vwo-5. Je kent deze typisch Nederlandse schoolsysteem-termen niet en kunt niet meepraten.',
     actionText: 'Ga 1 stap terug.',
-    conversationPrompt: 'Hoeveel van onze vergaderingen bestaan uit \'systeem-jargon\' dat niet alleen internationale, maar eigenlijk alle startende docenten buitensluit?',
+    conversationPrompt: 'Hoe zorgen we ervoor dat we tijdens vergaderingen jargon en specifieke systeemkennis tijdig toelichten voor nieuwe of internationale collega\'s?',
     action: (p) => ({ position: Math.max(1, p.position - 1) })
   },
   {
@@ -319,7 +319,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Belemmeringen in de communicatie',
     description: 'Je wilt een groepje luidruchtige leerlingen in de gang aanspreken, maar uit angst dat je een taalfout maakt slik je je woorden in en loop je met een boogje om ze heen.',
     actionText: 'Sla 1 beurt over.',
-    conversationPrompt: 'Hoe doorbreken we de vicieuze cirkel waarin de angst om taalfouten te maken leidt tot vermijding, wat vervolgens weer de integratie en taalontwikkeling afremt?',
+    conversationPrompt: 'Hoe kunnen we collega\'s aanmoedigen om ook buiten de les op de gang initiatief te tonen, en hoe bieden we hierin een veilige leeromgeving?',
     action: () => ({ skipNextTurn: true })
   },
   {
@@ -328,7 +328,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Onveilige feedback',
     description: 'Terwijl de leerlingen meeluisteren, roept je begeleider vanuit de achterkant van de klas: "Nee, dat leg je verkeerd uit!" Je voelt je publiekelijk voor schut gezet.',
     actionText: 'Ga 3 stappen terug.',
-    conversationPrompt: 'Als een begeleider publiekelijk ingrijpt, beschermt hij dan de leerlingen, of ondermijnt hij vooral de professionele identiteit van de internationale docent?',
+    conversationPrompt: 'Hoe geven we als begeleider constructief sturing tijdens een les, zonder de professionele autoriteit en het zelfvertrouwen van de docent te ondermijnen?',
     action: (p) => ({ position: Math.max(1, p.position - 3) })
   },
   {
@@ -337,7 +337,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Onbekende humor',
     description: 'Een collega maakt een cynische opmerking over de directie. Jij neemt dit volledig letterlijk en maakt je er de hele dag grote zorgen over, tot iemand lachend uitlegt dat het een grapje was.',
     actionText: 'Ga 1 stap terug.',
-    conversationPrompt: 'Is onze \'typisch Nederlandse\' cynische humor op de werkvloer eigenlijk wel zo onschuldig, of is het een subtiel mechanisme van in- en uitsluiting?',
+    conversationPrompt: 'Hoe creëren we een werkomgeving waarin we beseffen dat humor cultuurgebonden is, en zorgen we dat grapjes daadwerkelijk voor iedereen verbindend werken?',
     action: (p) => ({ position: Math.max(1, p.position - 1) })
   },
   {
@@ -346,7 +346,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Cultuurkloof rondom proactiviteit',
     description: 'Je wacht beleefd af tot je begeleider je een taak geeft, want dat is in jouw cultuur respectvol. Je begeleider ergert zich echter groen omdat hij vindt dat je totaal geen initiatief toont.',
     actionText: 'Ga 2 stappen terug.',
-    conversationPrompt: 'Waarom zien wij de \'Nederlandse\' vorm van proactiviteit als de universele norm voor een goede werkhouding, ten koste van andere uitingen van professionaliteit en respect?',
+    conversationPrompt: 'Hoe kunnen we als team expliciet bespreken wat onze verwachtingen zijn rondom \'initiatief nemen\', met oprecht respect voor culturele verschillen rondom hiërarchie?',
     action: (p) => ({ position: Math.max(1, p.position - 2) })
   },
   {
@@ -355,7 +355,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Last-minute informatie',
     description: 'Pas tien minuten voor de bel gaat, roept je begeleider dat jij vandaag tóch de hele les over de relativiteitstheorie mag geven. Je raakt volledig in paniek door deze onverwachte actie.',
     actionText: 'Ga 1 stap terug.',
-    conversationPrompt: 'Wanneer we improvisatievermogen verwachten, houden we er dan rekening mee dat improviseren in een tweede taal exponentieel veel meer energie en veiligheid vereist?',
+    conversationPrompt: 'Hoe balanceren we de noodzaak tot flexibiliteit met de terechte behoefte aan voorspelbaarheid en voorbereidingstijd voor docenten die in een tweede taal werken?',
     action: (p) => ({ position: Math.max(1, p.position - 1) })
   },
   {
@@ -364,7 +364,7 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Werkplekbegeleider',
     description: 'Je vaste aanspreekpunt blijkt een docent te zijn van een heel ander vakgebied die maar twee dagen per week op school is. Je voelt je in de steek gelaten en moet alles zelf uitzoeken.',
     actionText: 'Sla 1 beurt over.',
-    conversationPrompt: 'Hoe waarborgen we de kwaliteit van werkplekbegeleiding als deze afhankelijk is van docenten die zelf overbelast of fysiek afwezig zijn?',
+    conversationPrompt: 'Hoe organiseren we de begeleiding op zo\'n manier dat een stagiair bij afwezigheid van de vaste begeleider altijd veilig kan terugvallen op een breder ondersteunend team?',
     action: () => ({ skipNextTurn: true })
   },
   {
@@ -373,9 +373,10 @@ export const NEGATIVE_FACTORS: Factor[] = [
     title: 'Logistieke belemmering',
     description: 'Je bent elke dag twee uur aan het reizen met bussen en treinen om op stage te komen. Je kunt hierdoor helaas nooit na schooltijd nog even blijven hangen voor een borrel of teamoverleg.',
     actionText: 'Ga 2 stappen terug.',
-    conversationPrompt: 'Als sociale inclusie vooral na schooltijd plaatsvindt, hoe voorkomen we dan dat logistieke uitdagingen (zoals lange reistijden) leiden tot professionele isolatie?',
+    conversationPrompt: 'Op welke manieren kunnen we teambuilding en informele momenten inbedden binnen de reguliere schooltijden, zodat ook reizende collega\'s volwaardig mee kunnen doen?',
     action: (p) => ({ position: Math.max(1, p.position - 2) })
   }
 ];
 
 export const ALL_FACTORS = [...POSITIVE_FACTORS, ...NEGATIVE_FACTORS];
+
