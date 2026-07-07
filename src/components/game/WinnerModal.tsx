@@ -65,6 +65,13 @@ export function WinnerModal({ winner, onRestart }: WinnerModalProps) {
           >
             Naar Evaluatieformulier
           </Button>
+          <Button
+            onClick={() => navigate({ to: '/factoren' })}
+            variant="ghost"
+            className="w-full px-6 text-emerald-700 hover:bg-emerald-50 font-bold text-lg"
+          >
+            Bekijk alle factoren
+          </Button>
         </div>
       </DialogContent>
     </Dialog>
