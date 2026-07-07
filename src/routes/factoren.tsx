@@ -24,6 +24,12 @@ function FactorCard({ factor }: { factor: any }) {
       </CardHeader>
       <CardContent className="flex flex-col gap-4 flex-1">
         <p className="text-slate-600 text-sm flex-1">{factor.description}</p>
+        {factor.conversationPrompt && (
+          <div className="bg-amber-50 border-l-4 border-l-amber-500 p-3 rounded-r-md mt-1">
+            <span className="block font-bold text-xs text-amber-900 uppercase tracking-wider mb-1">Gespreksprompt</span>
+            <span className="text-sm text-amber-800 italic">"{factor.conversationPrompt}"</span>
+          </div>
+        )}
         <div className={`p-3 rounded-md font-semibold text-sm mt-auto ${isPositive ? 'bg-emerald-50 text-emerald-800' : 'bg-rose-50 text-rose-800'}`}>
           Actie: {factor.actionText}
         </div>
