@@ -41,7 +41,7 @@ function FactorenComponent() {
         <div className="mb-12 text-center max-w-3xl mx-auto">
           <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight mb-4">Factoren Databank</h1>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Hier vind je een overzicht van alle positieve en negatieve factoren die de integratie van Internationale Student Docenten (ISD) beïnvloeden. Deze factoren komen willekeurig voor als je op speciale vakjes komt tijdens het spelen van het Ganzenbord.
+            Hier vind je een overzicht van alle positieve en negatieve factoren die de inclusie van Internationale Student Docenten (ISD) beïnvloeden. Deze factoren komen willekeurig voor als je op speciale vakjes komt tijdens het spelen van het Ganzenbord.
           </p>
         </div>
 

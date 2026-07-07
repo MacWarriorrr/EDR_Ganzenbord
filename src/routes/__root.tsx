@@ -14,7 +14,7 @@ function RootComponent() {
           <div className="flex items-center gap-2">
             <NavigationIcon className="h-6 w-6 text-blue-600" />
             <span className="font-bold text-lg hidden sm:inline-block">
-              ISD Integratie Reis
+              ISD Inclusie Reis
             </span>
           </div>
           <nav className="flex items-center gap-6">

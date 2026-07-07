@@ -36,7 +36,7 @@ export function GameSetup({ onStart }: GameSetupProps) {
         </div>
         <CardTitle className="text-3xl text-stone-800">Klaar voor de start?</CardTitle>
         <CardDescription className="text-base mt-2">
-          Vul de namen in van je collega's om de ISD Integratie Reis te spelen (2 tot 6 spelers).
+          Vul de namen in van je collega's om de ISD Inclusie Reis te spelen (2 tot 6 spelers).
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-6">

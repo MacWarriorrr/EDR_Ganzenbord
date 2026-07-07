@@ -103,11 +103,17 @@ export function EventModal({ event, onClose }: EventModalProps) {
           )}>
             {currentEvent.factor.title}
           </div>
-          <DialogDescription className="text-lg text-stone-700 leading-relaxed py-4 font-medium flex-1 flex items-center">
+          <DialogDescription className="text-base text-stone-700 leading-relaxed py-2 font-medium flex-1 flex items-center">
             {currentEvent.factor.description}
           </DialogDescription>
+          {currentEvent.factor.conversationPrompt && (
+            <div className="w-full text-left bg-white/60 p-3 rounded-xl border-l-4 border-l-amber-500 shadow-sm mb-2">
+              <span className="block font-bold text-xs text-stone-800 uppercase tracking-wider mb-1">Gespreksprompt</span>
+              <span className="text-sm text-stone-700 italic">"{currentEvent.factor.conversationPrompt}"</span>
+            </div>
+          )}
           <div className={cn(
-            "w-full py-4 px-6 rounded-xl font-black text-xl mb-4 border-2 shadow-sm",
+            "w-full py-3 px-6 rounded-xl font-black text-lg mb-2 border-2 shadow-sm",
             isPositive 
               ? "bg-emerald-100 border-emerald-200 text-emerald-900" 
               : "bg-rose-100 border-rose-200 text-rose-900"

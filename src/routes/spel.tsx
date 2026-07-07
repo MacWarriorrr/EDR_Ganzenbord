@@ -38,8 +38,8 @@ function SpelComponent() {
     <div className="min-h-[calc(100vh-4rem)] bg-stone-50 py-4 px-4 sm:px-8">
       <div className="mx-auto max-w-[1800px] w-full">
         <div className="mb-4 text-center">
-          <h1 className="text-3xl font-extrabold text-stone-800 tracking-tight mb-2">ISD Integratie Reis - Het Spel</h1>
-          <p className="text-stone-600">Gooi de dobbelsteen en ontdek hoe jouw integratiepad verloopt.</p>
+          <h1 className="text-3xl font-extrabold text-stone-800 tracking-tight mb-2">ISD Inclusie Reis - Het Spel</h1>
+          <p className="text-stone-600">Gooi de dobbelsteen en ontdek hoe jouw inclusiepad verloopt.</p>
         </div>
 
         {!gameStarted ? (

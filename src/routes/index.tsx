@@ -23,7 +23,7 @@ function IndexComponent() {
           </span>
           <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-7xl mb-6">
             Welkom bij de<br />
-            <span className="text-primary mt-2 block">ISD Integratie Reis</span>
+            <span className="text-primary mt-2 block">ISD Inclusie Reis</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
             Ontdek op een speelse manier wat er nodig is om Internationale Student Docenten (ISD) echt thuis te laten voelen in het Nederlandse onderwijs.
@@ -46,7 +46,7 @@ function IndexComponent() {
               <CardTitle className="text-xl text-foreground">Internationaal talent in Brainport</CardTitle>
             </CardHeader>
             <CardContent className="text-sm leading-relaxed text-muted-foreground">
-              De Brainport Eindhoven regio barst van het internationale talent. Tegelijkertijd hebben onze scholen ontzettend veel behoefte aan goede STEM-docenten (Science, Technology, Engineering, Mathematics). Het klinkt als een perfecte match, toch? Maar de praktijk wijst uit dat het integreren van een Internationale Student Docenten super complex is. Het gaat veel verder dan alleen de taal leren.
+              De Brainport Eindhoven regio barst van het internationale talent. Tegelijkertijd hebben onze scholen ontzettend veel behoefte aan goede STEM-docenten (Science, Technology, Engineering, Mathematics). Het klinkt als een perfecte match, toch? Maar de praktijk wijst uit dat het integreren van Internationale Student Docenten super complex is. Het gaat veel verder dan alleen de taal leren.
             </CardContent>
           </Card>
 
@@ -58,7 +58,7 @@ function IndexComponent() {
               <CardTitle className="text-xl text-foreground">Een tweerichtingsverkeer</CardTitle>
             </CardHeader>
             <CardContent className="text-sm leading-relaxed text-muted-foreground">
-              Integratie komt van twee kanten. Het is niet alleen de internationale docent die zich moet aanpassen. We moeten kijken naar de 'school readiness': is de school eigenlijk wel klaar om internationaal talent te omarmen? Daarnaast is een 'sense of belonging' cruciaal. Je wilt je niet alleen welkom voelen, maar je wilt vooral professioneel gewaardeerd worden om wie je bent en wat je kan.
+              Inclusie komt van twee kanten. Het is niet alleen de internationale docent die zich moet aanpassen. We moeten kijken naar de 'school readiness': is de school eigenlijk wel klaar om internationaal talent te omarmen? Daarnaast is een 'sense of belonging' cruciaal. Je wilt je niet alleen welkom voelen, maar je wilt vooral professioneel gewaardeerd worden om wie je bent en wat je kan.
             </CardContent>
           </Card>
 

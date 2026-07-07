@@ -234,7 +234,7 @@ function EvaluatieComponent() {
               </label>
 
               <label className="block">
-                <span className="text-stone-700 font-semibold mb-2 block">4.3 Ziet u dit spel werken als middel om op een middelbare school het gesprek over integratie te faciliteren? Waarom wel of niet?</span>
+                <span className="text-stone-700 font-semibold mb-2 block">4.3 Ziet u dit spel werken als middel om op een middelbare school het gesprek over inclusie te faciliteren? Waarom wel of niet?</span>
                 <textarea name="q4_3_facilitation" rows={3} className="w-full rounded-md border-stone-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"></textarea>
               </label>
             </div>
