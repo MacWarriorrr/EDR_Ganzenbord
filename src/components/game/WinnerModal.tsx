@@ -42,7 +42,7 @@ export function WinnerModal({ winner, onRestart }: WinnerModalProps) {
             Gefeliciteerd!
           </DialogTitle>
           <DialogDescription className="text-lg text-stone-700 py-2 font-medium">
-            Je bent succesvol geïntegreerd!
+            Je bent succesvol in je rol als volwaardig docent!
           </DialogDescription>
           <div className="flex items-center justify-center gap-2 mt-2">
             <PlayerIcon playerId={winner.id} color={winner.color} size={20} />
