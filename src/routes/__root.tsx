@@ -8,7 +8,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-200">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-blue-200">
       <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -50,9 +50,18 @@ function RootComponent() {
         </div>
       </header>
 
-      <main className="flex-1">
+      <main className="flex-1 pb-8">
         <Outlet />
       </main>
+
+      <footer className="border-t bg-white py-6 mt-auto">
+        <div className="container mx-auto px-4 text-center text-sm text-slate-500">
+          <p>&copy; {new Date().getFullYear()} ISD Inclusie Reis. All Rights Reserved.</p>
+          <p className="mt-1 text-xs text-slate-400">
+            Dit project is ontwikkeld door Juul Peters in samenwerking met de Technische Universiteit Eindhoven. Kopiëren, aanpassen of verder ontwikkelen van de broncode is niet toegestaan zonder expliciete toestemming van alle partijen.
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
