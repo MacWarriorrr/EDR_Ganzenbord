@@ -43,10 +43,10 @@ function IndexComponent() {
               <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary flex items-center gap-2">
                 <Users size={16} /> Waarom dit project?
               </div>
-              <CardTitle className="text-xl text-foreground">Internationaal talent in Brainport</CardTitle>
+              <CardTitle className="text-xl text-foreground">Internationaal talent in het onderwijs</CardTitle>
             </CardHeader>
             <CardContent className="text-sm leading-relaxed text-muted-foreground">
-              De Brainport Eindhoven regio barst van het internationale talent. Tegelijkertijd hebben onze scholen ontzettend veel behoefte aan goede STEM-docenten (Science, Technology, Engineering, Mathematics). Het klinkt als een perfecte match, toch? Maar de praktijk wijst uit dat het integreren van Internationale Student Docenten super complex is. Het gaat veel verder dan alleen de taal leren.
+              Brabant barst van het internationaal STEM talent, en zeker de Brainport regio. Tegelijkertijd hebben onze scholen ontzettend veel behoefte aan goede STEM-docenten (Science, Technology, Engineering, Mathematics). Het klinkt als een perfecte match, toch? Maar de praktijk wijst uit dat het opnemen van Internationale Student Docenten op school behoorlijk complex is. Het gaat veel verder dan alleen de taal leren.
             </CardContent>
           </Card>
 
@@ -58,7 +58,8 @@ function IndexComponent() {
               <CardTitle className="text-xl text-foreground">Een tweerichtingsverkeer</CardTitle>
             </CardHeader>
             <CardContent className="text-sm leading-relaxed text-muted-foreground">
-              Inclusie komt van twee kanten. Het is niet alleen de internationale docent die zich moet aanpassen. We moeten kijken naar de 'school readiness': is de school eigenlijk wel klaar om internationaal talent te omarmen? Daarnaast is een 'sense of belonging' cruciaal. Je wilt je niet alleen welkom voelen, maar je wilt vooral professioneel gewaardeerd worden om wie je bent en wat je kan.
+              Inclusie en samenwerking komen van twee kanten. Het is niet alleen de internationale docent die zich moet aanpassen. We moeten kijken naar de 'school readiness': in hoeverre is de school klaar om internationaal talent te omarmen? Dat kan gaan over contracten en beloningen. Maar hier focussen we op de werkvloer en de begeleiding. Daar zijn ‘veiligheid’ en het gevoel er bij te horen ('sense of belonging’) cruciaal. En als nieuwkomer wil je professioneel gewaardeerd voelen, om wat je (al) kan en wie je bent.
+
             </CardContent>
           </Card>
 
@@ -70,7 +71,7 @@ function IndexComponent() {
               <CardTitle className="text-xl text-foreground">Van deficit naar meerwaarde</CardTitle>
             </CardHeader>
             <CardContent className="text-sm leading-relaxed text-muted-foreground">
-              We moeten af van het idee dat internationals 'extra werk' zijn (het zogenaamde deficit thinking). Ze brengen juist een schat aan andere perspectieven, culturele achtergronden en didactische benaderingen mee! Laten we die achtergrond gaan zien als een enorme verrijking ('asset-based') voor de school, de collega's en natuurlijk de leerlingen.
+              Misschien kost het begeleiden van een internationale ISD in het begin wat 'extra’ werk. Maar het is ook leerzaam. Én er staat een unieke meerwaarde tegenover. Internationals brengen juist een schat aan vakkennis, andere perspectieven, culturele achtergronden en didactische benaderingen de school in! En voor veel leerlingen: herkenbaarheid. Per saldo is er een enorme verrijking ('asset-based’) en kwaliteitsimpuls voor de school, de collega's en natuurlijk de leerlingen.
             </CardContent>
           </Card>
         </div>
