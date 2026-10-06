@@ -149,9 +149,12 @@ function IndexComponent() {
               </div>
             </div>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-8 bg-card/40 p-4 rounded-xl border border-border/30">
-            <img src={bosLogo} alt="De Brabantse OpleidingsSchool" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
-            <img src={esoeLogo} alt="Eindhoven School of Education" className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+          <div className="flex flex-wrap items-end justify-center gap-8 bg-card/40 px-6 py-4 rounded-xl border border-border/30">
+            <div className="flex flex-col items-center gap-1.5">
+              <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">In opdracht van</span>
+              <img src={bosLogo} alt="De Brabantse OpleidingsSchool" className="h-14 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+            </div>
+            <img src={esoeLogo} alt="Eindhoven School of Education" className="h-14 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
           </div>
         </div>
       </section>

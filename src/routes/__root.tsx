@@ -58,7 +58,7 @@ function RootComponent() {
         <div className="container mx-auto px-4 text-center text-sm text-slate-500">
           <p>&copy; {new Date().getFullYear()} ISD Inclusie Reis. All Rights Reserved.</p>
           <p className="mt-1 text-xs text-slate-400">
-            Dit project is ontwikkeld door Juul Peters in samenwerking met de Technische Universiteit Eindhoven. Kopiëren, aanpassen of verder ontwikkelen van de broncode is niet toegestaan zonder expliciete toestemming van alle partijen.
+            Dit project is ontwikkeld door Juul Peters in samenwerking met de Technische Universiteit Eindhoven. Deze applicatie is een versie ontwikkeld voor onderzoeksdoeleinden. Kopiëren, aanpassen of verder ontwikkelen van de broncode is niet toegestaan zonder expliciete toestemming van alle partijen.
           </p>
         </div>
       </footer>
